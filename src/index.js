@@ -12,6 +12,7 @@ const fetchApi = (name) => {
             console.log(data);
         } catch (err) {
             console.log(err);
+            // not found, ez
         }
     };
     asyncFunction();
@@ -24,6 +25,7 @@ document.addEventListener('click', (e) => {
     if (isDropDownButton === null || !isDropDownButton.includes("configdropdown")) {
         return;
     }
+    console.log(1);
     
     let currentDropdown;
     

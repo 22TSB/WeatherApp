@@ -76,7 +76,8 @@ body {
 
 .search-location-form path,
 .config-button path,
-.temp-settings path {
+.temp-settings path,
+.location-weather-temp-svg path {
     stroke: var(--base-color);
 }
 
@@ -88,9 +89,28 @@ body {
 .temp-settings {
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
+    gap: 20px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.temp-settings div:last-child {
+    flex: 1;
+}
+
+.temp-settings:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.temp-settings:active {
+    scale: .90;
+    transition: 0.1s ease-in-out;
 }
 
 .config-settings {
+    z-index: 1;
     width: 200px;
     line-height: 1.2;
     position: absolute;
@@ -110,4 +130,73 @@ body {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+.speed-settings svg {
+    fill: var(--base-color);
+}
+
+
+/* heading */
+.heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 1000px;
+    max-width: 90dvw;
+    margin: auto;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.location-weather-temp {
+    display: flex;
+    gap: 20px;
+    z-index: 0;
+}
+
+.location-weather-temp-details p:first-child,
+.location-name {
+    z-index: 0;
+    font-size: 5rem;
+}
+
+.location-weather-temp-details p:last-child,
+.location-weather-temp-details p:last-child,
+.minmax-bottomcontainer p {
+    color: gray;
+    margin-left: 8px;
+}
+
+.location-weather-temp-svg {
+    display: flex;
+    align-items: center;
+}
+
+.location-weather-temp-svg svg {
+    height: 80px;
+    width: 80px;
+}
+
+.location-weather-temp-minmax {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 0;
+}
+
+.minmax-topcontainer {
+    display: flex;
+    gap: 20px;
+}
+
+.min-info p:first-child,
+.max-info p:first-child{
+    font-size: 1rem;
+    text-align: center;
+}
+
+.min-info p:last-child,
+.max-info p:last-child {
+    font-size: 3rem;
 }
