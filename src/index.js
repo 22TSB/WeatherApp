@@ -1,9 +1,13 @@
 import './css/reset.css';
 import './css/style.css';
 
+const body = document.querySelector('body');
+
+// fetch api
 const fetchApi = (name) => {
     const asyncFunction = async () => {
         try {
+            throw new Error('throw error!');
             const res = await fetch(
                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=us&key=DBQFMCKC6CCJUT55XEUUKXR2J&contentType=json`,
                 { mode: 'cors' }
@@ -13,6 +17,8 @@ const fetchApi = (name) => {
         } catch (err) {
             console.log(err);
             // not found, ez
+            const input = document.querySelector('.search-location-input');
+            input.placeholder = "unknown location";
         }
     };
     asyncFunction();
@@ -20,12 +26,11 @@ const fetchApi = (name) => {
 // fetchApi("zalau");
 
 // config
-document.addEventListener('click', (e) => {
+body.addEventListener('click', (e) => {
     const isDropDownButton = e.target.getAttribute("class");
     if (isDropDownButton === null || !isDropDownButton.includes("configdropdown")) {
         return;
     }
-    console.log(1);
     
     let currentDropdown;
     
