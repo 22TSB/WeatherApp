@@ -30,7 +30,12 @@
                             ></path>
                         </g>
                     </svg>
-                    <input type="text" name="search-location" class="search-location-input" placeholder="Search for a location..."/>
+                    <input
+                        type="text"
+                        name="search-location"
+                        class="search-location-input"
+                        placeholder="Search for a location..."
+                    />
                     <svg
                         class="cancel-button"
                         viewBox="0 0 24 24"
@@ -199,8 +204,8 @@
         </section>
         <section class="heading">
             <div class="location-name">
-                <p>Zalau</p>
-                <p>Ligh rain</p>
+                <p class="location-name-city">Zalau</p>
+                <p class="location-name-condition">Ligh rain</p>
             </div>
             <div class="location-weather-temp">
                 <div class="location-weather-temp-svg">
@@ -227,8 +232,7 @@
                     </svg>
                 </div>
                 <div class="location-weather-temp-details">
-                    <p>18.2°</p>
-                    <p>Overcast</p>
+                    <p class="location-weather-temp-number">18.2°</p>
                 </div>
             </div>
             <div class="location-weather-temp-minmax">
@@ -237,7 +241,7 @@
                         <div></div>
                         <div class="min-info">
                             <p>Min</p>
-                            <p>-2.7°</p>
+                            <p class="min-temp-num">-2.7°</p>
                         </div>
                     </div>
                     <div class="max-container">
@@ -245,13 +249,13 @@
                             <div></div>
                             <div class="max-info">
                                 <p>Max</p>
-                                <p>-2.7°</p>
+                                <p class="max-temp-num">-2.7°</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="minmax-bottomcontainer">
-                    <p>Feels like -0.1°</p>
+                    <p class="feels-like-temp">Feels like -0.1°</p>
                 </div>
             </div>
         </section>
@@ -286,7 +290,7 @@
                     </div>
                     <div class="main-info">
                         <p>Sunrise</p>
-                        <p>08:03 AM</p>
+                        <p class="sunrise-time">08:03 AM</p>
                     </div>
                 </div>
                 <div>
@@ -317,7 +321,7 @@
                     </div>
                     <div class="main-info">
                         <p>Sunset</p>
-                        <p>05:08 PM</p>
+                        <p class="sunset-time">05:08 PM</p>
                     </div>
                 </div>
             </div>
@@ -351,7 +355,7 @@
                     </div>
                     <div class="main-info">
                         <p>Wind</p>
-                        <p>13 km/h</p>
+                        <p class="wind-speed">13 km/h</p>
                     </div>
                 </div>
                 <div>
@@ -382,7 +386,7 @@
                     </div>
                     <div class="main-info">
                         <p>Humidity</p>
-                        <p>76%</p>
+                        <p class="humidity-percentage">76%</p>
                     </div>
                 </div>
             </div>
@@ -405,7 +409,7 @@
                     </div>
                     <div class="main-info">
                         <p>Pressure</p>
-                        <p>1018 mb</p>
+                        <p class="pressure-mb">1018 mb</p>
                     </div>
                 </div>
                 <div>
@@ -435,8 +439,8 @@
                         </svg>
                     </div>
                     <div class="main-info">
-                        <p>Sunset</p>
-                        <p>05:08 PM</p>
+                        <p>Gusts</p>
+                        <p class="gusts-speed">33.4 km/h</p>
                     </div>
                 </div>
             </div>
@@ -447,8 +451,8 @@
                 <div class="hour-leftside">
                     <div class="hour-leftside-left">
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-1">1 PM</p>
+                            <div class="weather-icon-1">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -477,8 +481,8 @@
                             </div>
                         </div>
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-2">1 PM</p>
+                            <div class="weather-icon-2">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -509,8 +513,8 @@
                     </div>
                     <div class="hour-leftside-right">
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-3">1 PM</p>
+                            <div class="weather-icon-3">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -539,8 +543,8 @@
                             </div>
                         </div>
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-4">1 PM</p>
+                            <div class="weather-icon-4">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -573,8 +577,8 @@
                 <div class="hour-rightside">
                     <div class="hour-rightside-left">
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-5">1 PM</p>
+                            <div class="weather-icon-5">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -603,8 +607,8 @@
                             </div>
                         </div>
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-6">1 PM</p>
+                            <div class="weather-icon-6">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -635,8 +639,8 @@
                     </div>
                     <div class="hour-rightside-right">
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-7">1 PM</p>
+                            <div class="weather-icon-7">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -665,8 +669,8 @@
                             </div>
                         </div>
                         <div class="hour-card">
-                            <p>1 PM</p>
-                            <div class="weather-icon">
+                            <p class="hour-p-8">1 PM</p>
+                            <div class="weather-icon-8">
                                 <svg
                                     class="weather-icon-svg"
                                     viewBox="0 0 24 24"
@@ -728,7 +732,7 @@
                     </div>
                     <div class="week-details-container">
                         <p class="week-details-day">SUN</p>
-                        <p  class="week-details-date">17 NOV</p>
+                        <p class="week-details-date">17 NOV</p>
                         <div class="week-minmax">
                             <div class="week-min">
                                 <p>-1.6°</p>
@@ -768,7 +772,7 @@
                     </div>
                     <div class="week-details-container">
                         <p class="week-details-day">SUN</p>
-                        <p  class="week-details-date">17 NOV</p>
+                        <p class="week-details-date">17 NOV</p>
                         <div class="week-minmax">
                             <div class="week-min">
                                 <p>-1.6°</p>
@@ -808,7 +812,7 @@
                     </div>
                     <div class="week-details-container">
                         <p class="week-details-day">SUN</p>
-                        <p  class="week-details-date">17 NOV</p>
+                        <p class="week-details-date">17 NOV</p>
                         <div class="week-minmax">
                             <div class="week-min">
                                 <p>-1.6°</p>

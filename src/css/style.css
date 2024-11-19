@@ -164,15 +164,18 @@ body {
     z-index: 0;
 }
 
+.location-weather-temp-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .location-weather-temp-details p:first-child,
 .location-name p:first-child {
     text-wrap: wrap;
     font-size: 5rem;
 }
 
-
-.location-weather-temp-details p:last-child,
-.location-weather-temp-details p:last-child,
 .minmax-bottomcontainer p,
 .location-name p:last-child {
     color: gray;
@@ -196,6 +199,7 @@ body {
 .location-weather-temp-svg svg {
     height: 80px;
     width: 80px;
+    color: var(--base-color);
 }
 
 .location-weather-temp-minmax {
@@ -269,8 +273,7 @@ body {
 .wind-svg,
 .humidity-svg,
 .pressure-svg,
-.gusts-svg,
-.weather-icon-svg
+.gusts-svg
 {
     width: 60px;
     height: 60px;
@@ -297,7 +300,17 @@ body {
     color: #db8cea;
 }
 
-.weather-icon-svg {
+.weather-icon-1,
+.weather-icon-2,
+.weather-icon-3,
+.weather-icon-4,
+.weather-icon-5,
+.weather-icon-6,
+.weather-icon-7,
+.weather-icon-8
+{
+    width: 60px;
+    height: 60px;
     color: #969eb0;
 }
 
@@ -422,5 +435,18 @@ body {
 
     .main-infobox {
         gap: 16px;
+    }
+}
+
+/* location name */
+@media only screen and (max-width: 700px) {
+    .location-name p:first-child {
+        font-size: 3rem;
+        text-align: center;
+    }
+    
+    .location-name p:last-child {
+        font-size: 1.5rem;
+        text-align: center;
     }
 }
