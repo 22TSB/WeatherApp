@@ -3,6 +3,36 @@ import './css/style.css';
 
 const body = document.querySelector('body');
 
+// get month
+const getMonth = (month) => {
+    switch (month) {
+        case "1":
+            return "JAN";
+        case "2":
+            return "FEB";
+        case "3":
+            return "MAR";
+        case "4":
+            return "APR";
+        case "5":
+            return "MAY";
+        case "6":
+            return "JUN";
+        case "7":
+            return "JUL";
+        case "8":
+            return "AUG";
+        case "9":
+            return "SEP";
+        case "10":
+            return "OCT";
+        case "11":
+            return "NOV";
+        case "12":
+            return "DEC";
+    }
+};
+
 // svg
 const setSvg = (icon, div) => {
     switch (icon) {
@@ -252,8 +282,7 @@ const hourly = (liveHour, data) => {
     let amOrPm;
     if (liveHour <= 23 && liveHour >= 12) {
         amOrPm = true;
-    }
-    else {
+    } else {
         amOrPm = false;
     }
     if (liveHour + 7 > 23) {
@@ -272,9 +301,8 @@ const hourly = (liveHour, data) => {
         const icon = data.days[day].hours[i].icon;
         const p = document.querySelector(`.hour-p-${j}`);
         if (amOrPm) {
-            p.textContent = i + 'PM'
-        }
-        else {
+            p.textContent = i + 'PM';
+        } else {
             p.textContent = i + 'AM';
         }
         setSvg(icon, div);
@@ -296,6 +324,43 @@ const hourly = (liveHour, data) => {
 };
 
 // week
+const week = (minT0, maxT0, date0, icon0, minT1, maxT1, date1, icon1, minT2, maxT2, date2, icon2) => {
+    const div0 = document.querySelector('.week-weathericon-0');
+    const div1 = document.querySelector('.week-weathericon-1');
+    const div2 = document.querySelector('.week-weathericon-2');
+    setSvg(icon0, div0);
+    setSvg(icon1, div1);
+    setSvg(icon2, div2);
+    const p0 = document.querySelector('.week-date-p-0');
+    const p1 = document.querySelector('.week-date-p-1');
+    const p2 = document.querySelector('.week-date-p-2');
+
+    const mo0 = getMonth(date0.slice(0, 2));
+    const day0 = date0.slice(3, 5);
+    const mo1 = getMonth(date1.slice(0, 2));
+    const day1 = date1.slice(3, 5);
+    const mo2 = getMonth(date2.slice(0, 2));
+    const day2 = date2.slice(3, 5);
+    let ptext0 = mo0 + ' ' + day0;
+    let ptext1 = mo1 + ' ' + day1;
+    let ptext2 = mo2 + ' ' + day2;
+    p0.textContent = ptext0;
+    p1.textContent = ptext1;
+    p2.textContent = ptext2;
+
+    const weekminp0 = document.querySelector('.week-min-p-0');
+    const weekminp1 = document.querySelector('.week-min-p-1');
+    const weekminp2 = document.querySelector('.week-min-p-2');
+    weekminp0.textContent = minT0;
+    weekminp1.textContent = minT1;
+    weekminp2.textContent = minT2;
+    const weekmaxp0 = document.querySelector('.week-max-p-0');
+    const weekmaxp1 = document.querySelector('.week-max-p-1');
+    const weekmaxp2 = document.querySelector('.week-max-p-2');
+    weekmaxp0.textContent = maxT0;
+    weekmaxp1.textContent = maxT1;
+    weekmaxp2.textContent = maxT2;
+};
 
 // dom
 const dom = (data) => {
@@ -313,6 +378,18 @@ const dom = (data) => {
     const humidity = data.days[0].humidity + ' %';
     const pressure = data.days[0].pressure + ' mb';
     const windGust = data.days[0].windgust + ' km/h';
+
+    const date0 = data.days[0].datetime.slice(5, 10);
+
+    const minT1 = data.days[1].tempmin + ' °';
+    const maxT1 = data.days[1].tempmax + ' °';
+    const date1 = data.days[1].datetime.slice(5, 10);
+    const icon1 = data.days[1].icon;
+
+    const minT2 = data.days[2].tempmin + ' °';
+    const maxT2 = data.days[2].tempmax + ' °';
+    const date2 = data.days[2].datetime.slice(5, 10);
+    const icon2 = data.days[1].icon;
 
     if (Number(sunriseDate.slice(0, 2)) >= 12) {
         sunriseDate += ' PM';
@@ -345,33 +422,8 @@ const dom = (data) => {
     const liveDate = data.currentConditions.datetime;
     let liveHour = Number(liveDate.slice(0, 2));
     hourly(liveHour, data);
-    // let firstHour = liveHour;
-    // let sw;
-    // let lastHour;
-    // if (liveHour + 7 > 23) {
-    //     sw = true;
-    //     lastHour = firstHour - 17;
-    // } else {
-    //     sw = false;
-    //     lastHour = liveHour + 7;
-    // }
-    // let i = firstHour;
-    // let day = 0;
-    // while (i !== lastHour + 1) {
-    //     console.log(i, day);
-    //     // const day =
-    //     if (i === 23) {
-    //         i = -1;
-    //         if (lastHour === 23) {
-    //             break;
-    //         }
-    //         if (sw) {
-    //             day++;
-    //         }
-    //     }
-    //     i++;
-    // }
-    // console.log(data);
+
+    week(minTemp, maxTemp, date0, icon, minT1, maxT1, date1, icon1, minT2, maxT2, date2, icon2);
 };
 
 // fetch api
@@ -394,7 +446,7 @@ const fetchApi = (name) => {
     };
     asyncFunction();
 };
-// fetchApi("zalau");
+fetchApi("new york");
 
 // let liveHour = Number('17:00:00'.slice(0, 2));
 // let firstHour = liveHour;

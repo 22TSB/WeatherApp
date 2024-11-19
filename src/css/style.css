@@ -395,13 +395,29 @@ body {
     align-items: center;
 }
 
+.week-weathericon-0 svg,
+.week-weathericon-1 svg,
+.week-weathericon-2 svg {
+    width: 60px;
+    height: 60px;
+    color: var(--base-color);
+}
+
+.week-weathericon-0,
+.week-weathericon-1,
+.week-weathericon-2 {
+    display: flex;
+    align-items: center;
+}
+
 .week-details-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 8px;
 }
 
-.week-details-day {
+/* .week-details-day {
     font-size: 1.25rem;
     font-weight: 400;
 }
@@ -409,7 +425,7 @@ body {
 .week-details-date {
     font-size: 1.25rem;
     color: gray;
-}
+} */
 
 .week-minmax {
     display: flex;
