@@ -1,28 +1,30 @@
 /* default */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap');
 
 :root {
-    --base-color: #333;
+    --const-text-color: #333;
+    --text-color: #333;
     --background-color: white;
-    --background-color-2: #eeeeee;
+    --gray: hsl(0, 0%, 30%);
 }
 
 .darkmode {
-    --base-color: white;
+    transition: 0.2s ease-in-out;
+    --text-color: white;
     --background-color: #333;
+    --gray: hsl(0, 0%, 80%);
 }
 
 body {
     background-color: var(--background-color);
-    color: var(--base-color);
-    font-family: "Poppins", sans-serif;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
     min-height: 100%;
 }
 
 .hide {
     display: none;
 }
-
 
 /* top */
 .top-nav {
@@ -41,7 +43,7 @@ body {
 .config-button-container {
     border-radius: 40px;
     padding: 12px;
-    background-color: var(--background-color-2);
+    background-color: var(--background-color);
 }
 
 .config-button-container {
@@ -61,36 +63,67 @@ body {
     width: 100%;
     padding: 0px 20px 0px 20px;
     font-size: 2rem;
+    color: var(--text-color);
 }
 
 .config-button {
     height: 40px;
 }
 
+.search-button {
+    color: var(--text-color);
+}
+
 .search-button:hover {
     cursor: pointer;
 }
 
+.ld-settings svg:last-child {
+    display: none;
+}
+
+.darkmode .ld-settings svg:first-child {
+    display: none;
+}
+
+.darkmode .ld-settings svg:last-child {
+    display: block;
+}
+
+.temp-settings svg {
+    stroke: var(--const-text-color);
+}
+
 .search-location-form svg,
 .config-button svg,
-.temp-settings svg {
+.temp-settings svg,
+.speed-settings svg,
+.ld-settings svg {
     width: 40px;
     height: 40px;
 }
-
+/* 
 .search-location-form path,
-.config-button path,
 .temp-settings path,
+.speed-settings svg,
 .location-weather-temp-svg path {
-    stroke: var(--base-color);
+    stroke: var(--text-color);
+} */
+
+.config-settings svg,
+.config-settings p,
+.config-button svg {
+    color: var(--text-color);
 }
 
 .cancel-button:hover,
 .config-button svg:hover {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-.temp-settings {
+.temp-settings,
+.speed-settings,
+.ld-settings {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
@@ -99,21 +132,51 @@ body {
     border-radius: 4px;
 }
 
-.temp-settings div:last-child {
+.temp-settings div:last-child,
+.speed-settings div:last-child,
+.ld-settings div:last-child {
     flex: 1;
 }
 
-.temp-settings:hover {
+.temp-settings div:first-child,
+.speed-settings div:first-child,
+.ld-settings div:first-child {
+    display: flex;
+    align-items: center;
+}
+
+.temp-settings:hover,
+.speed-settings:hover,
+.ld-settings:hover {
     cursor: pointer;
     background-color: whitesmoke;
 }
 
-.temp-settings:active {
-    scale: .90;
+.temp-settings:active,
+.speed-settings:active,
+.ld-settings:active {
+    scale: 0.9;
     transition: 0.1s ease-in-out;
 }
 
+.temp-settings svg {
+    stroke: var(--const-text-color);
+}
+.speed-settings svg {
+    fill: var(--const-text-color);
+}
+
+.temp-settings p,
+.speed-settings p,
+.ld-settings p,
+.ld-settings svg {
+    color: var(--const-text-color);
+}
+
 .config-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     z-index: 1;
     width: 200px;
     line-height: 1.2;
@@ -135,11 +198,6 @@ body {
     transform: translateY(0);
     pointer-events: auto;
 }
-
-.speed-settings svg {
-    fill: var(--base-color);
-}
-
 
 /* heading */
 .heading {
@@ -178,7 +236,7 @@ body {
 
 .minmax-bottomcontainer p,
 .location-name p:last-child {
-    color: gray;
+    color: var(--gray);
     margin-left: 8px;
 }
 
@@ -199,7 +257,7 @@ body {
 .location-weather-temp-svg svg {
     height: 80px;
     width: 80px;
-    color: var(--base-color);
+    color: var(--text-color);
 }
 
 .location-weather-temp-minmax {
@@ -215,16 +273,15 @@ body {
 }
 
 .min-info p:first-child,
-.max-info p:first-child{
+.max-info p:first-child {
     font-size: 1rem;
     text-align: center;
 }
 
 .min-info p:last-child,
 .max-info p:last-child {
-    font-size: 3rem;
+    font-size: 4rem;
 }
-
 
 /* main */
 .main {
@@ -259,7 +316,7 @@ body {
 }
 
 .main-info p:first-child {
-    color: gray;
+    color: var(--gray);
 }
 
 .main-info p:last-child {
@@ -273,8 +330,7 @@ body {
 .wind-svg,
 .humidity-svg,
 .pressure-svg,
-.gusts-svg
-{
+.gusts-svg {
     width: 60px;
     height: 60px;
     color: #ffc755;
@@ -307,13 +363,11 @@ body {
 .weather-icon-5,
 .weather-icon-6,
 .weather-icon-7,
-.weather-icon-8
-{
+.weather-icon-8 {
     width: 60px;
     height: 60px;
     color: #969eb0;
 }
-
 
 /* hourly */
 .hourly {
@@ -330,12 +384,15 @@ body {
 }
 
 .hour-card {
+    background-color: var(--background-color-2);
     padding: 20px;
     border-radius: 20px;
-    background-color: var(--background-color-2);
 }
 
 .hour-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
     text-align: center;
 }
 
@@ -362,7 +419,6 @@ body {
     gap: 20px;
 }
 
-
 /* week */
 .week {
     display: flex;
@@ -383,7 +439,7 @@ body {
 .week-day1,
 .week-day2 {
     display: flex;
-    background-color: whitesmoke;
+    background-color: var(--background-color-2);
     border-radius: 20px;
     padding: 20px;
     padding-right: 24px;
@@ -400,7 +456,7 @@ body {
 .week-weathericon-2 svg {
     width: 60px;
     height: 60px;
-    color: var(--base-color);
+    color: var(--text-color);
 }
 
 .week-weathericon-0,
@@ -417,15 +473,11 @@ body {
     gap: 8px;
 }
 
-/* .week-details-day {
-    font-size: 1.25rem;
-    font-weight: 400;
-}
-
 .week-details-date {
     font-size: 1.25rem;
-    color: gray;
-} */
+    font-weight: 600;
+    color: var(--text-color);
+}
 
 .week-minmax {
     display: flex;
@@ -435,12 +487,13 @@ body {
 .week-min p:first-child,
 .week-max p:first-child {
     font-size: 3rem;
+    color: var(--text-color);
 }
 
 .week-min p:last-child,
 .week-max p:last-child {
     font-size: 2rem;
-    color: gray;
+    color: var(--text-color);
 }
 
 /* media query */
@@ -460,7 +513,7 @@ body {
         font-size: 3rem;
         text-align: center;
     }
-    
+
     .location-name p:last-child {
         font-size: 1.5rem;
         text-align: center;

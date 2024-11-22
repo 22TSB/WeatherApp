@@ -6,30 +6,30 @@ const body = document.querySelector('body');
 // get month
 const getMonth = (month) => {
     switch (month) {
-        case "1":
-            return "JAN";
-        case "2":
-            return "FEB";
-        case "3":
-            return "MAR";
-        case "4":
-            return "APR";
-        case "5":
-            return "MAY";
-        case "6":
-            return "JUN";
-        case "7":
-            return "JUL";
-        case "8":
-            return "AUG";
-        case "9":
-            return "SEP";
-        case "10":
-            return "OCT";
-        case "11":
-            return "NOV";
-        case "12":
-            return "DEC";
+        case '1':
+            return 'JAN';
+        case '2':
+            return 'FEB';
+        case '3':
+            return 'MAR';
+        case '4':
+            return 'APR';
+        case '5':
+            return 'MAY';
+        case '6':
+            return 'JUN';
+        case '7':
+            return 'JUL';
+        case '8':
+            return 'AUG';
+        case '9':
+            return 'SEP';
+        case '10':
+            return 'OCT';
+        case '11':
+            return 'NOV';
+        case '12':
+            return 'DEC';
     }
 };
 
@@ -324,7 +324,20 @@ const hourly = (liveHour, data) => {
 };
 
 // week
-const week = (minT0, maxT0, date0, icon0, minT1, maxT1, date1, icon1, minT2, maxT2, date2, icon2) => {
+const week = (
+    minT0,
+    maxT0,
+    date0,
+    icon0,
+    minT1,
+    maxT1,
+    date1,
+    icon1,
+    minT2,
+    maxT2,
+    date2,
+    icon2
+) => {
     const div0 = document.querySelector('.week-weathericon-0');
     const div1 = document.querySelector('.week-weathericon-1');
     const div2 = document.querySelector('.week-weathericon-2');
@@ -423,7 +436,20 @@ const dom = (data) => {
     let liveHour = Number(liveDate.slice(0, 2));
     hourly(liveHour, data);
 
-    week(minTemp, maxTemp, date0, icon, minT1, maxT1, date1, icon1, minT2, maxT2, date2, icon2);
+    week(
+        minTemp,
+        maxTemp,
+        date0,
+        icon,
+        minT1,
+        maxT1,
+        date1,
+        icon1,
+        minT2,
+        maxT2,
+        date2,
+        icon2
+    );
 };
 
 // fetch api
@@ -432,11 +458,14 @@ const fetchApi = (name) => {
         try {
             // throw new Error('throw error!');
             const res = await fetch(
-                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=us&key=DBQFMCKC6CCJUT55XEUUKXR2J&contentType=json`,
+                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=metric&key=DBQFMCKC6CCJUT55XEUUKXR2J&contentType=json`,
                 { mode: 'cors' }
             );
             const data = await res.json();
             dom(data);
+            const input = document.querySelector('.search-location-input');
+            input.value = '';
+            input.placeholder = 'Search a location...';
         } catch (err) {
             console.log(err);
             // not found, ez
@@ -446,44 +475,35 @@ const fetchApi = (name) => {
     };
     asyncFunction();
 };
-fetchApi("new york");
 
-// let liveHour = Number('17:00:00'.slice(0, 2));
-// let firstHour = liveHour;
-// let sw;
-// let lastHour;
-// if (liveHour + 7 > 23) {
-//     sw = true;
-//     lastHour = firstHour - 17;
-// } else {
-//     sw = false;
-//     lastHour = liveHour + 7;
-// }
+// toggle darkmode
+const enableDarkMode = () => {
+    document.body.classList.add('darkmode');
+    localStorage.setItem('darkmode', 'active');
+};
+const disableDarkMode = () => {
+    document.body.classList.remove('darkmode');
+    localStorage.setItem('darkmode', null);
+};
+let darkmode = localStorage.getItem('darkmode');
+const themeSwitch = document.querySelector('.ld-settings');
 
-// let i = firstHour;
-// let day = 0;
-// while (i !== lastHour + 1) {
-//     console.log(i, day);
-//     // const day =
-//     if (i === 23) {
-//         i = -1;
-//         if (lastHour === 23) {
-//             break;
-//         }
-//         if (sw) {
-//             day++;
-//         }
-//     }
-//     i++;
-// }
+if (darkmode === 'active') {
+    enableDarkMode();
+}
+
+themeSwitch.addEventListener('click', () => {
+    darkmode = localStorage.getItem('darkmode');
+    darkmode !== 'active' ? enableDarkMode() : disableDarkMode();
+});
 
 // config
 // config 4 dropdown
-const isChildToParent = (kid) => {
+const isChildToParent = (grandp, kid) => {
     let parent = kid;
     while (parent !== body) {
         const className = parent.getAttribute('class');
-        if (className === 'config-settings') {
+        if (className === grandp) {
             return false;
         }
         parent = parent.parentElement;
@@ -491,9 +511,134 @@ const isChildToParent = (kid) => {
     return true;
 };
 
+// mph kmh conversion
+const speedConversion = (sw) => {
+    const speedTitle =
+        document.querySelector('.speed-settings').lastElementChild;
+    const windSpeed = document.querySelector('.wind-speed');
+    const gustsSpeed = document.querySelector('.gusts-speed');
+    if (sw) {
+        speedTitle.textContent = 'mp/h';
+
+        let wind = windSpeed.textContent;
+        wind = wind.slice(0, wind.length - 5);
+        wind /= 1.609344;
+        wind = wind.toFixed(1);
+        wind += ' mp/h';
+        windSpeed.textContent = wind;
+
+        let gusts = gustsSpeed.textContent;
+        gusts = gusts.slice(0, gusts.length - 5);
+        gusts /= 1.609344;
+        gusts = gusts.toFixed(1);
+        gusts += ' mp/h';
+        gustsSpeed.textContent = gusts;
+
+        speedSwitch = false;
+    } else {
+        speedTitle.textContent = 'km/h';
+
+        let wind = windSpeed.textContent;
+        wind = wind.slice(0, wind.length - 5);
+        wind *= 1.609344;
+        wind = wind.toFixed(1);
+        wind += ' km/h';
+        windSpeed.textContent = wind;
+
+        let gusts = gustsSpeed.textContent;
+        gusts = gusts.slice(0, gusts.length - 5);
+        gusts *= 1.609344;
+        gusts = gusts.toFixed(1);
+        gusts += ' km/h';
+        gustsSpeed.textContent = gusts;
+
+        speedSwitch = true;
+    }
+};
+
+// celsius farenheit converion
+const tempConversion = (sw) => {
+    const temp1 = document.querySelector('.location-weather-temp-number');
+    const temp2 = document.querySelector('.min-temp-num');
+    const temp3 = document.querySelector('.max-temp-num');
+    const temp4 = document.querySelector('.feels-like-temp');
+
+    const temp5 = document.querySelector('.week-min-p-0');
+    const temp6 = document.querySelector('.week-max-p-0');
+    const temp7 = document.querySelector('.week-min-p-1');
+    const temp8 = document.querySelector('.week-max-p-1');
+    const temp9 = document.querySelector('.week-min-p-2');
+    const temp10 = document.querySelector('.week-max-p-2');
+
+    const toFarenheit = (temp) => {
+        let len = temp.textContent;
+        let num = len.slice(0, len.length - 1);
+        num = num * 1.8 + 32;
+        num = num.toFixed(1);
+        num += '°';
+        temp.textContent = num;
+    };
+
+    const toCelsius = (temp) => {
+        const len = temp.textContent;
+        let num = len.slice(0, len.length - 1);
+        num = (num - 32) * 0.5555555555;
+        num = num.toFixed(1);
+        num += '°';
+        temp.textContent = num;
+    };
+
+    if (sw) {
+        toFarenheit(temp1);
+        toFarenheit(temp2);
+        toFarenheit(temp3);
+        toFarenheit(temp4);
+        toFarenheit(temp5);
+        toFarenheit(temp6);
+        toFarenheit(temp7);
+        toFarenheit(temp8);
+        toFarenheit(temp9);
+        toFarenheit(temp10);
+        tempSwitch = false;
+    } else {
+        toCelsius(temp1);
+        toCelsius(temp2);
+        toCelsius(temp3);
+        toCelsius(temp4);
+        toCelsius(temp5);
+        toCelsius(temp6);
+        toCelsius(temp7);
+        toCelsius(temp8);
+        toCelsius(temp9);
+        toCelsius(temp10);
+        tempSwitch = true;
+    }
+};
+
+let speedSwitch = true;
+let tempSwitch = true;
+
+const tryToFetch = (name) => {
+    if (name !== null && name.includes('sb')) {
+        const input = document.querySelector('.search-location-input');
+        if (input.value.length > 0) {
+            fetchApi(input.value);
+        }
+    }
+};
+
+body.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const input = document.querySelector('.search-location-input');
+        if (input.value.length > 0) {
+            fetchApi(input.value);
+        }
+    }
+});
+
 body.addEventListener('click', (e) => {
     const isDropDownButton = e.target.getAttribute('class');
-    // console.log(e.target);
+    tryToFetch(isDropDownButton);
 
     if (
         isDropDownButton === null ||
@@ -503,7 +648,15 @@ body.addEventListener('click', (e) => {
         const className = isActive.getAttribute('class');
         if (className.includes('active')) {
             // active and != config-settings
-            if (isChildToParent(e.target)) isActive.classList.toggle('active');
+            if (isChildToParent('config-settings', e.target)) {
+                isActive.classList.toggle('active');
+            } else {
+                if (!isChildToParent('temp-settings', e.target)) {
+                    tempConversion(tempSwitch);
+                } else if (!isChildToParent('speed-settings', e.target)) {
+                    speedConversion(speedSwitch);
+                }
+            }
         }
         return;
     }
