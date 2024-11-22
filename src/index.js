@@ -476,6 +476,8 @@ const fetchApi = (name) => {
     asyncFunction();
 };
 
+// fetchApi("Bucharest");
+
 // toggle darkmode
 const enableDarkMode = () => {
     document.body.classList.add('darkmode');
