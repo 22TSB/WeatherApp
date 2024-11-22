@@ -594,19 +594,33 @@ const tempConversion = (sw) => {
         toFarenheit(temp1);
         toFarenheit(temp2);
         toFarenheit(temp3);
-        toFarenheit(temp4);
+
+        let len = temp4.textContent;
+        let num = len.slice(11, len.length - 1);
+        num = num * 1.8 + 32;
+        num = num.toFixed(1);
+        num += '°';
+        temp4.textContent = 'Feels like ' + num;
+
         toFarenheit(temp5);
         toFarenheit(temp6);
         toFarenheit(temp7);
         toFarenheit(temp8);
         toFarenheit(temp9);
-        toFarenheit(temp10);
+        toFarenheit(temp10)
         tempSwitch = false;
     } else {
         toCelsius(temp1);
         toCelsius(temp2);
         toCelsius(temp3);
-        toCelsius(temp4);
+        
+        const len = temp4.textContent;
+        let num = len.slice(11, len.length - 1);
+        num = (num - 32) * 0.5555555555;
+        num = num.toFixed(1);
+        num += '°';
+        temp4.textContent = 'Feels like ' + num;
+
         toCelsius(temp5);
         toCelsius(temp6);
         toCelsius(temp7);
