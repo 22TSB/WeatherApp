@@ -604,7 +604,6 @@ const tempConversion = (sw) => {
         toFarenheit(temp9);
         toFarenheit(temp10)
         tempSwitch = false;
-        
         temp11.textContent = 'Farenheit';
     } else {
         toCelsius(temp1);
