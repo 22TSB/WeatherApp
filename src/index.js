@@ -572,6 +572,8 @@ const tempConversion = (sw) => {
     const temp9 = document.querySelector('.week-min-p-2');
     const temp10 = document.querySelector('.week-max-p-2');
 
+    const temp11 = document.querySelector('.temp-settings').lastElementChild.firstElementChild;
+
     const toFarenheit = (temp) => {
         let len = temp.textContent;
         let num = len.slice(0, len.length - 1);
@@ -609,6 +611,8 @@ const tempConversion = (sw) => {
         toFarenheit(temp9);
         toFarenheit(temp10)
         tempSwitch = false;
+        
+        temp11.textContent = 'Farenheit';
     } else {
         toCelsius(temp1);
         toCelsius(temp2);
@@ -628,6 +632,7 @@ const tempConversion = (sw) => {
         toCelsius(temp9);
         toCelsius(temp10);
         tempSwitch = true;
+        temp11.textContent = 'Celsius';
     }
 };
 
