@@ -461,6 +461,9 @@ const fetchApi = (name) => {
                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=metric&key=DBQFMCKC6CCJUT55XEUUKXR2J&contentType=json`,
                 { mode: 'cors' }
             );
+            /**
+             * fetched data
+             */
             const data = await res.json();
             dom(data);
             const input = document.querySelector('.search-location-input');
@@ -501,14 +504,20 @@ themeSwitch.addEventListener('click', () => {
 
 // config
 // config 4 dropdown
-const isChildToParent = (grandp, kid) => {
-    let parent = kid;
-    while (parent !== body) {
-        const className = parent.getAttribute('class');
-        if (className === grandp) {
+/**
+ * 
+ * @param {*} parent is the searched elem
+ * @param {*} child is the starting elem
+ * @returns {*} false or true if child belongs to parent
+ */
+const isChildToParent = (parent, child) => {
+    let elem = child;
+    while (elem !== body) {
+        const className = elem.getAttribute('class');
+        if (className === parent) {
             return false;
         }
-        parent = parent.parentElement;
+        elem = elem.parentElement;
     }
     return true;
 };
