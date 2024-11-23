@@ -234,6 +234,12 @@ body {
     font-size: 5rem;
 }
 
+.minmax-bottomcontainer {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
 .minmax-bottomcontainer p,
 .location-name p:last-child {
     color: var(--gray);
