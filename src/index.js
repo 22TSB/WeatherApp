@@ -348,15 +348,16 @@ const week = (
     const p1 = document.querySelector('.week-date-p-1');
     const p2 = document.querySelector('.week-date-p-2');
 
-    const mo0 = getMonth(date0.slice(0, 2));
+    const mo0 = getMonth(date0.slice(1, 2));
     const day0 = date0.slice(3, 5);
-    const mo1 = getMonth(date1.slice(0, 2));
+    const mo1 = getMonth(date1.slice(1, 2));
     const day1 = date1.slice(3, 5);
-    const mo2 = getMonth(date2.slice(0, 2));
+    const mo2 = getMonth(date2.slice(1, 2));
     const day2 = date2.slice(3, 5);
     let ptext0 = mo0 + ' ' + day0;
     let ptext1 = mo1 + ' ' + day1;
     let ptext2 = mo2 + ' ' + day2;
+    
     p0.textContent = ptext0;
     p1.textContent = ptext1;
     p2.textContent = ptext2;
@@ -382,7 +383,7 @@ const dom = (data) => {
     const descriptionTemp = data.days[0].conditions;
     const minTemp = data.days[0].tempmin + ' °';
     const maxTemp = data.days[0].tempmax + ' °';
-    const feelslikeTemp = 'feels like ' + data.days[0].feelslike + ' °';
+    const feelslikeTemp = data.days[0].feelslike + ' °';
     const icon = data.days[0].icon;
 
     let sunriseDate = data.days[0].sunrise;
@@ -458,7 +459,7 @@ const fetchApi = (name) => {
         try {
             // throw new Error('throw error!');
             const res = await fetch(
-                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=metric&key=DBQFMCKC6CCJUT55XEUUKXR2J&contentType=json`,
+                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}?unitGroup=metric&key=KQJHHGW5NCX7N2F266NJ7ZFHA&contentType=json`,
                 { mode: 'cors' }
             );
             /**
